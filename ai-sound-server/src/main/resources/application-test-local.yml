@@ -1,0 +1,109 @@
+server:
+  port: ${PORT:9099}
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 连接数满后的排队数，默认为100
+    accept-count: 4096
+    threads:
+      # tomcat最大线程数，默认为200
+      max: 800
+      # Tomcat启动初始化的线程数，默认值10
+      min-spare: 100
+
+#配置数据源
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ec2-18-230-212-191.sa-east-1.compute.amazonaws.com:3307/score_server?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
+    username: root
+    password: NeE8YGYa^k5^KVhM
+
+  jackson:
+    #    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    timeToLive: 15
+    ssl: false
+    lettuce:
+      pool:
+        MaxTotal: 50
+        minIdle: 1
+        maxWaitMillis: 5000
+        maxIdle: 5
+        testOnBorrow: true
+        testOnReturn: true
+        testWhileIdle: true
+    user:
+      database: 2
+      hostName: ec2-18-230-212-191.sa-east-1.compute.amazonaws.com
+      port: 16379
+      timeout: 5000
+      password: 7RXG5&n@N7$rQQvQ
+    sc:
+      database: 6
+      hostName: ec2-18-230-212-191.sa-east-1.compute.amazonaws.com
+      port: 16379
+      timeout: 5000
+      password: 7RXG5&n@N7$rQQvQ
+
+mybatis-plus:
+  mapper-locations: classpath:mapping/**/*Mapper.xml
+  type-aliases-package: com.hx.**.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+http-config:
+  common:
+    #http请求超时时间 单位毫秒
+    rest_read_timeout: 200
+    #http连接超时时间
+    rest_connect_timeout: 200
+    #http写入超时时间
+    rest_write_timeout: 200
+    #媒资打点信息,http请求超时时间 单位毫秒
+    media_rest_read_timeout: 20000
+    #媒资打点信息,http连接超时时间
+    media_rest_connect_timeout: 20000
+    #媒资打点信息,http写入超时时间
+    media_rest_write_timeout: 20000
+
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（默认30分钟）
+  expireTime: 4320
+
+  # 日志配置
+  logging:
+    level:
+      com.hx: debug
+      org.springframework: warn
+
+
+score:
+  wall:
+    material-url: http://18.230.212.191:8085/stage-api
+    show-flag: false
+    image-url: http://18.230.212.191:9099/images/
+
+redisson:
+  address: redis://172.31.36.242:16379
+  database: 6
+  password: 7RXG5&n@N7$rQQvQ
+  timeout: 20000
+  connectTime:
+
+# 代付相关配置
+payout:
+  # 代付标识符（rrTag）
+  rrTag: "WG.yindu"
+  # 令牌秘钥（secretKey）
+  secretKey: "d8e7e12978814a53aa357bbbc3efe611"
+  # 印度/印尼/越南 代付到卡的 API URL
+  apiUrl: "http://api.uat.oceanvtpay.com/v01/api/payout/init/payc/3rd"
+  # 代付回调地址
+  callbackUrl: "http://18.230.212.191:8082/score/payout/rrUrl"

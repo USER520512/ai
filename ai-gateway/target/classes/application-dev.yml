@@ -1,0 +1,84 @@
+server:
+  port: 9082
+
+spring:
+  cloud:
+    # 网关配置
+    gateway:
+      routes:
+        - id: engine
+          uri: http://127.0.0.1:9082
+          predicates:
+            - Path=/engine/**
+          #            - Method=GET,POST
+          filters:
+            - StripPrefix=1
+        - id: score
+          uri: http://127.0.0.1:9099
+          predicates:
+            - Path=/score/**
+          #            - Method=GET,POST
+          filters:
+            - StripPrefix=1
+
+  # redis配置
+  redis:
+    timeToLive: 15
+    ssl: false
+    lettuce:
+      pool:
+        MaxTotal: 50
+        minIdle: 1
+        maxWaitMillis: 5000
+        maxIdle: 5
+        testOnBorrow: true
+        testOnReturn: true
+        testWhileIdle: true
+    user:
+      database: 1
+      hostName: 192.168.0.111
+      port: 6379
+      timeout: 5000
+    #      password: Ehjm^S12
+
+# http连接配置
+http-config:
+  common:
+    #http请求超时时间 单位毫秒
+    rest_read_timeout: 200
+    #http连接超时时间
+    rest_connect_timeout: 200
+    #http写入超时时间
+    rest_write_timeout: 200
+    #媒资打点信息,http请求超时时间 单位毫秒
+    media_rest_read_timeout: 20000
+    #媒资打点信息,http连接超时时间
+    media_rest_connect_timeout: 20000
+    #媒资打点信息,http写入超时时间
+    media_rest_write_timeout: 20000
+
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（默认30分钟）
+  expireTime: 30
+
+# 系统内部配置
+ad:
+  gateway:
+    secretKey: Tga/BC5ykb/kfXJPl1MTBt4P6vHit71iRbJh8vlHhGk=
+
+# 日志配置
+logging:
+  level:
+    org.springframework:
+      cloud:
+        gateway: DEBUG
+    com.example.gateway: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    com.hx: DEBUG
+    reactor.netty.http.client: DEBUG
+    reactor.netty.http.server: DEBUG

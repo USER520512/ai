@@ -1,0 +1,23 @@
+package com.sy.domain.response;
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * @description: 登录响应
+ * @author: zys
+ * @create: 2024-06-20 11:23
+ **/
+@Data
+public class InitResponse implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 登录TOKEN
+     */
+    private String token;
+
+
+}

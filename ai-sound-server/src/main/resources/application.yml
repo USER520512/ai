@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: @activeProfile@
+    cloud:
+      openfeign:
+        enabled: true
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+#Prometheus springboot监控配置
+  application:
+    name: PrometheusApp
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,metrics
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name} # 暴露的数据中添加application label
+
+api:
+  fish:
+    audio: https://api.fish.audio

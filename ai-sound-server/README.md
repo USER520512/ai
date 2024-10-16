@@ -1,0 +1,1 @@
+airtable-python-sdk==0.11.2

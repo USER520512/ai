@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hx</groupId>
-    <artifactId>ad-server</artifactId>
+    <groupId>com.sanyang</groupId>
+    <artifactId>ai-server</artifactId>
     <version>1.0</version>
     <modules>
-        <module>ai-score-wall</module>
-        <module>ad-generator</module>
-        <module>ad-gateway</module>
+        <module>ai-sound-server</module>
+        <module>ai-sound-server</module>
+        <module>ai-gateway</module>
     </modules>
     <packaging>pom</packaging>
-    <name>ad-server</name>
+    <name>ai-server</name>
     <url>http://www.example.com</url>
 
     <properties>
