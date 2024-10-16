@@ -1,7 +1,8 @@
 package com.sy.common.util;
 
-import com.hx.common.constants.Constants;
-import com.hx.common.text.Convert;
+
+import com.sy.common.constants.Constants;
+import com.sy.common.text.Convert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -151,7 +152,7 @@ public class ServletUtils {
         }
 
         String uri = request.getRequestURI();
-        if (com.hx.common.util.StringUtils.inStringIgnoreCase(uri, ".json", ".xml")) {
+        if (com.sy.common.util.StringUtils.inStringIgnoreCase(uri, ".json", ".xml")) {
             return true;
         }
 

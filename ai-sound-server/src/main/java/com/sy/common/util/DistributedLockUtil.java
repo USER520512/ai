@@ -1,6 +1,7 @@
 package com.sy.common.util;
 
-import com.hx.common.config.RedisConfig;
+
+import com.sy.common.config.RedisConfig;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

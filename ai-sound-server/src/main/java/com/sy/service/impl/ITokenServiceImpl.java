@@ -75,14 +75,6 @@ public class ITokenServiceImpl implements ITokenService {
         return createToken(claims);
     }
 
-    @Override
-    public void cleanToken(LoginUser loginUser) {
-        loginUser.setLoginTime(System.currentTimeMillis());
-        loginUser.setExpireTime(loginUser.getLoginTime() + expireTime * MILLIS_MINUTE);
-        String userKey = getTokenKey(loginUser.getToken());
-        redisUtils.deleteObject(redisConfig.userRedisTemplate(), userKey);
-    }
-
     /**
      * 刷新令牌有效期
      *

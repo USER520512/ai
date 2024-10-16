@@ -2,8 +2,10 @@ package com.sy.common.domain;
 
 
 
-import com.hx.common.constants.HttpStatus;
-import com.hx.common.util.StringUtils;
+
+
+import com.sy.common.constants.HttpStatus;
+import com.sy.common.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Objects;

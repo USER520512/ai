@@ -2,7 +2,9 @@ package com.sy.common.domain;
 
 
 
-import com.hx.common.constants.HttpStatus;
+
+
+import com.sy.common.constants.HttpStatus;
 
 import java.io.Serializable;
 
